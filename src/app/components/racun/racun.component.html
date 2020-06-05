@@ -1,0 +1,36 @@
+<div class="container" *ngIf="racun">
+    <h1 class="display-4"> Racun </h1>
+
+    <span class="font-weight-bold"> ID: </span> {{ racun.id }}  <br>
+    <span class="font-weight-bold"> Zatvoren: </span> {{ racun.zatvoren }}  <br>
+    <span class="font-weight-bold"> Kupac: </span> {{ racun.kupac.ime }} {{ racun.kupac.prezime }}  <br>
+    <span class="font-weight-bold"> Email kupca:</span> {{ racun.kupac.email }}  <br>
+    <span class="font-weight-bold"> Broj telefona kupca: </span> {{ racun.kupac.broj_telefona }}  <br>
+    
+    <span class="font-weight-bold">Vozila: </span>
+    
+    <table class="table table-hover table-stripped text-center">
+        <thead>
+            <th scope="col" class="fit">#</th>
+            <th scope="col">Vozilo</th>
+            <th scope="col">Kategorija</th>
+            <th scope="col">Vlasnik</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Upravnik</th>
+            <th scope="col">Prodavac</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let v of vozila; let i = index">
+                <th span="row" class="fit">{{i+1}}</th>
+                <td> <a [routerLink]="[ '/vozila', v.vozilo.id]"> {{v.vozilo.id}} </a> </td>
+                <td> {{v.vozilo.kategorija.naziv}} </td>
+                <td> {{v.vozilo.vlasnik.ime}} {{v.vozilo.vlasnik.prezime}} </td>
+                <td> {{v.cena}}din.</td>
+                <td> {{v.vozilo.upravnik.ime}} {{v.vozilo.upravnik.prezime}} </td>
+                <td> {{v.prodavac.ime}} {{v.prodavac.prezime}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

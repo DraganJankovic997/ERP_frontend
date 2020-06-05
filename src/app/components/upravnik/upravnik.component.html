@@ -1,0 +1,31 @@
+<div class="container" *ngIf="upravnik">
+    <h1 class="display-4"> {{upravnik.ime}} {{upravnik.prezime}}   </h1>
+    <span class="font-weight-bold">JMBG: </span> {{ upravnik.jmbg }} <br>
+    <span class="font-weight-bold">Broj telefona: </span> {{ upravnik.broj_telefona }} <br>
+    <span class="font-weight-bold">Broj ugovora: </span> {{ upravnik.broj_ugovora }} <br>
+
+
+    <span class="font-weight-bold">Vozila: </span>
+    
+    <table class="table table-hover table-stripped text-center">
+        <thead>
+            <th scope="col" class="fit">#</th>
+            <th scope="col">Vozilo</th>
+            <th scope="col">Kategorija</th>
+            <th scope="col">Provizija</th>
+            <th scope="col">Trazena cena</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let v of vozila; let i = index">
+                <th span="row" class="fit">{{i+1}}</th>
+                <td> <a [routerLink]="[ '/vozila', v.id]"> {{v.id}} </a> </td>
+                <td> {{v.kategorija_id.naziv}} </td>
+                <td> {{v.kategorija_id.provizija}} </td>
+                <td> {{v.min_cena}} </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+</div>
