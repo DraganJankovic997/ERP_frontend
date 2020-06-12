@@ -1,1 +1,34 @@
-<p>vozilo works!</p>
+<div class="container" *ngIf="vozilo">
+    <h1 class="display-4">Vozilo #{{vozilo.id}}</h1>
+    <div class="row">
+
+        <div class="col-md-4">
+            <h1 class="display-4">Vozilo</h1>
+            <span class="font-weight-bold">Trazena cena: </span> {{ vozilo.min_cena }} <br>
+            <span class="font-weight-bold">Prodato: </span> {{ vozilo.prodato }} <br>
+            <span class="font-weight-bold">Kategorija: </span> {{ vozilo.kategorija.naziv }} <br>
+        </div>
+
+        <div class="col-md-4">
+            <h1 class="display-4">Vlasnik</h1>
+            <span class="font-weight-bold"> {{ vozilo.vlasnik.ime }} {{vozilo.vlasnik.prezime}}  </span><br>
+            <span class="font-weight-bold">Email: </span> {{ vozilo.vlasnik.email }} <br>
+            <span class="font-weight-bold">Broj telefona: </span> {{ vozilo.vlasnik.broj_telefona }} <br>
+        </div>
+
+        <div class="col-md-4">
+            <h1 class="display-4">Upravnik</h1>
+            <span class="font-weight-bold"> {{ vozilo.upravnik.ime }} {{vozilo.upravnik.prezime}}  </span><br>
+            <span class="font-weight-bold">Email: </span> {{ vozilo.vlasnik.email }} <br>
+            <span class="font-weight-bold">Broj telefona: </span> {{ vozilo.upravnik.broj_telefona }} <br>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+        <span>{{ vozilo.opis }} <br></span>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+        <button (click)="obrisiVozilo()" class="btn btn-lg btn-danger">Obrisi vozilo</button>
+        <button (click)="izmeniVozilo()" class="btn btn-lg btn-primary">izmeniVozilo</button>
+    </div>
+</div>
