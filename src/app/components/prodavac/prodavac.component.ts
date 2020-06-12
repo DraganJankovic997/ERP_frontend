@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdavacService } from 'src/app/services/prodavac.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prodavac',
@@ -11,7 +12,7 @@ export class ProdavacComponent implements OnInit {
 
   prodavac;
   provizije;
-  constructor(private prodavacService: ProdavacService, private route:ActivatedRoute) { }
+  constructor(private prodavacService: ProdavacService, private route:ActivatedRoute, private toastr:ToastrService, private router:Router) { }
 
   ngOnInit(): void {
     this.getProdavac();
@@ -23,6 +24,17 @@ export class ProdavacComponent implements OnInit {
       this.prodavac = res;
       this.provizije = res['provizije'];
     });
+  }
+
+  obrisiProdavca() {
+    console.log('f-ja');
+    this.prodavacService.deleteProdavac(this.route.snapshot.paramMap.get('id'))
+      .subscribe((res) => {
+        this.toastr.success(res['message'], 'Prodavac obrisan');
+        this.router.navigate(['/zaposleni']);
+      }, (err) => {
+        this.toastr.error(err.message, 'Error!');
+      })
   }
 
 }

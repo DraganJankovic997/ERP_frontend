@@ -13,4 +13,9 @@ export class ProdavacService {
   getProdavacById(id) {
     return this.httpClient.get(`${environment.API}/prodavac/${id}`);
   }
+
+  deleteProdavac(id) {
+    console.log('servis');
+    return this.httpClient.delete(`${environment.API}/brisanje/prodavac/${id}`);
+  }
 }

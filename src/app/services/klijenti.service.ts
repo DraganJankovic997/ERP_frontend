@@ -6,15 +6,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UpravnikService {
+export class KlijentiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUpravnikById(id) {
-    return this.httpClient.get(`${environment.API}/upravnik/${id}`);
-  }
-
-  deleteUpravnik(id) {
-    return this.httpClient.delete(`${environment.API}/brisanje/upravnik/${id}`);
+  getAll() {
+    return this.httpClient.get(`${environment.API}/klijent`);
   }
 }

@@ -1,0 +1,25 @@
+<div class="container" *ngIf="kategorija">
+    <h1 class="display-3">Izmeni postojecu kategoriju</h1>
+    <form [formGroup]="kategorijaForm" (ngSubmit)="updateKategorija()">
+        <div>
+            <input required type="text" placeholder="Naziv" class="form-control" formControlName="naziv">
+            <div *ngIf="naziv.errors && (naziv.touched || naziv.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="naziv.errors.required">
+                    Morate uneti naziv kategorije!
+                </span>
+            </div>
+        </div>
+    
+        <input required type="number" placeholder="Provizija" class="form-control" formControlName="provizija" step="0.1">
+        <div *ngIf="provizija.errors && (provizija.touched || provizija.dirty)" class="alert alert-danger">
+            <span class="help-block" *ngIf="provizija.errors.required">
+                Morate uneti proviziju!
+            </span>
+            <span class="help-block" *ngIf="provizija.errors.min || provizija.errors.max">
+                Vrednost provizije mora biti izmedju 0.0 i 1.0 !
+            </span>
+        </div>
+    
+        <button [disabled]="!kategorijaForm.valid" type="submit" class="btn btn-primary">Izmeni</button>
+    </form>
+</div>

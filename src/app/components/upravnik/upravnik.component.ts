@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UpravnikService } from 'src/app/services/upravnik.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-upravnik',
@@ -11,7 +12,7 @@ export class UpravnikComponent implements OnInit {
 
   upravnik;
   vozila;
-  constructor(private upravnikService: UpravnikService, private route: ActivatedRoute) { }
+  constructor(private upravnikService: UpravnikService, private route: ActivatedRoute, private router: Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.getUpravnik();
@@ -24,5 +25,15 @@ export class UpravnikComponent implements OnInit {
         let svaVozila = res['vozila'];
         this.vozila = svaVozila.filter(v => v.prodato == false);
       });
+  }
+
+  obrisiUpravnika() {
+    this.upravnikService.deleteUpravnik(this.route.snapshot.paramMap.get('id'))
+      .subscribe((res)=> {
+        this.toastr.success(res['message'], 'Upravnik je obrisan');
+        this.router.navigate(['/zaposleni']);
+      }, (err) => {
+        this.toastr.error(err.message, 'Error!');
+      })
   }
 }
