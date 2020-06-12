@@ -18,6 +18,9 @@ import { RacunComponent } from './components/racun/racun.component';
 import { KategorijeComponent } from './components/kategorije/kategorije.component';
 import { KlijentiComponent } from './components/klijenti/klijenti.component';
 import { KategorijaEditComponent } from './components/forms/kategorija-edit/kategorija-edit.component';
+import { KlijentAddComponent } from './components/forms/klijent-add/klijent-add.component';
+import { KlijentEditComponent } from './components/forms/klijent-edit/klijent-edit.component';
+import { KlijentComponent } from './components/klijent/klijent.component';
 
 
 const ROUTES = [
@@ -30,7 +33,10 @@ const ROUTES = [
   { path: 'racun/:id', component:RacunComponent },
   { path: 'kategorija', component: KategorijeComponent },
   { path: 'kategorija/edit/:id', component: KategorijaEditComponent },
-  { path: 'klijent', component: KlijentiComponent }
+  { path: 'klijent', component: KlijentiComponent },
+  { path: 'klijent/:id', component: KlijentComponent },
+  { path: 'add/klijent', component: KlijentAddComponent },
+  { path: 'edit/klijent/:id', component: KlijentEditComponent }
 ]
 
 @NgModule({
@@ -45,7 +51,10 @@ const ROUTES = [
     RacunComponent,
     KategorijeComponent,
     KlijentiComponent,
-    KategorijaEditComponent
+    KategorijaEditComponent,
+    KlijentAddComponent,
+    KlijentEditComponent,
+    KlijentComponent
   ],
   imports: [
     BrowserModule,
