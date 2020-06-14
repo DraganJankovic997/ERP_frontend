@@ -10,8 +10,18 @@ export class UpravnikService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAll() {
+    return this.httpClient.get(`${environment.API}/upravnik`);
+  }
   getUpravnikById(id) {
     return this.httpClient.get(`${environment.API}/upravnik/${id}`);
+  }
+
+  addUpravnik(data) {
+    return this.httpClient.post(`${environment.API}/upravnik`, data);
+  }
+  updateUpravnik(data, id) {
+    return this.httpClient.put(`${environment.API}/upravnik/${id}`, data);
   }
 
   deleteUpravnik(id) {

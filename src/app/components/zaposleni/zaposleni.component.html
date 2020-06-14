@@ -1,6 +1,9 @@
 <div class="container">
-    <h1 class="display-4">Prodavci</h1>
-    <table class="table table-hover table-stripped text-center">
+
+    <h1 class="d-inline display-4">Prodavci</h1>
+    <button (click)="dodajProdavca()" class="d-inline btn btn-lg btn-success float-right">Dodaj prodavca</button>    
+
+    <table class="mt-2 mb-5 table table-hover table-stripped text-center">
         <thead>
             <th scope="col" class="fit">#</th>
             <th scope="col">Ime</th>
@@ -28,9 +31,9 @@
         </tbody>
     </table>
 
-    <h1 class="display-4 mt-5">Upravnici</h1>
-
-    <table class="table table-hover table-stripped text-center">
+    <h1 class="d-inline display-4 mt-5">Upravnici</h1>
+    <button (click)="dodajUpravnika()" class="d-inline btn btn-lg btn-success float-right">Dodaj upravnika</button>
+    <table class="mt-2 table table-hover table-stripped text-center">
         <thead>
             <th scope="col" class="fit">#</th>
             <th scope="col">Ime</th>

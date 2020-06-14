@@ -39,8 +39,7 @@ export class VoziloComponent implements OnInit {
   }
 
   izmeniVozilo() {
-    // this.router.navigate([`/edit/vozilo/${this.route.snapshot.paramMap.get('id')}`]);
-    this.router.navigate(['/vozila']);
+    this.router.navigate([`/edit/vozila/${this.route.snapshot.paramMap.get('id')}`]);
   }
 
 }

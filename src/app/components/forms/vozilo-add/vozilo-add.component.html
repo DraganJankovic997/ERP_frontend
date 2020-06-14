@@ -1,0 +1,66 @@
+<div class="container">
+    <form [formGroup]="voziloForm" (ngSubmit)="dodajVozilo()">
+        <div class="mb-2">
+            <input required type="number" placeholder="Trazena cena" class="form-control" formControlName="min_cena">
+            <div *ngIf="min_cena.errors && (min_cena.touched || min_cena.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="min_cena.errors.required">
+                    Morate uneti trazenu cenu vozila!
+                </span>
+                <span class="help-block" *ngIf="min_cena.errors.min">
+                    Trazena cena vozila ne moze biti negativan broj!
+                </span>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <textarea required placeholder="Opis vozila" class="form-control" formControlName="opis" rows="5">
+            </textarea>
+            <div *ngIf="opis.errors && (opis.touched || opis.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="opis.errors.required">
+                    Morate uneti opis vozila!
+                </span>
+                <span class="help-block" *ngIf="opis.errors.minlength">
+                    Opis mora sadrzati najmanje 20 karaktera!
+                </span>
+            </div>
+        </div>
+        <div class="mb-2">
+            <span>Kategorija: </span>
+            <select class="form-control" formControlName="kategorija_id">
+                <option value="" *ngFor="let kategorija of kategorije" [ngValue]="kategorija.id"> {{kategorija.naziv}}</option>
+            </select>
+            <div *ngIf="kategorija_id.errors && (kategorija_id.touched || kategorija_id.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="kategorija_id.errors.required">
+                    Morate izabrati kategoriju vozila!
+                </span>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <span>Vlasnik: </span>
+            <select class="form-control" formControlName="vlasnik_id">
+                <option value="" *ngFor="let klijent of klijenti" [ngValue]="klijent.id"> {{klijent.ime}} {{klijent.prezime}} </option>
+            </select>
+            <div *ngIf="vlasnik_id.errors && (vlasnik_id.touched || vlasnik_id.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="vlasnik_id.errors.required">
+                    Morate izabrati vlasnika vozila!
+                </span>
+            </div>
+        </div>
+        
+        <div class="mb-2">
+            <span>Upravnik: </span>
+            <select class="form-control" formControlName="upravnik_id">
+                <option value="" *ngFor="let upravnik of upravnici" [ngValue]="upravnik.id"> {{upravnik.ime}} {{upravnik.prezime}} </option>
+            </select>
+            <div *ngIf="upravnik_id.errors && (upravnik_id.touched || upravnik_id.dirty)" class="alert alert-danger">
+                <span class="help-block" *ngIf="upravnik_id.errors.required">
+                    Morate izabrati upravnika za vozilo!
+                </span>
+            </div>
+        </div>
+
+        <button [disabled]="!voziloForm.valid" type="submit" class="btn btn-primary">Dodaj</button>
+
+    </form>
+</div>

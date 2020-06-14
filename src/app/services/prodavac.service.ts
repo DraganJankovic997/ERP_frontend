@@ -13,7 +13,12 @@ export class ProdavacService {
   getProdavacById(id) {
     return this.httpClient.get(`${environment.API}/prodavac/${id}`);
   }
-
+  addProdavac(data) {
+    return this.httpClient.post(`${environment.API}/prodavac`, data);
+  }
+  updateProdavac(data, id) {
+    return this.httpClient.put(`${environment.API}/prodavac/${id}`, data);
+  }
   deleteProdavac(id) {
     console.log('servis');
     return this.httpClient.delete(`${environment.API}/brisanje/prodavac/${id}`);

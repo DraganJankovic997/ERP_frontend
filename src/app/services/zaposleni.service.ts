@@ -13,4 +13,12 @@ export class ZaposleniService {
   getZaposleni() {
     return this.httpClient.get(`${environment.API}/zaposleni`);
   }
+
+  addZaposleni(data) {
+    return this.httpClient.post(`${environment.API}/zaposleni`, data);
+  }
+
+  updateZaposleni(data, id) {
+    return this.httpClient.put(`${environment.API}/zaposleni/${id}`,data);
+  }
 }

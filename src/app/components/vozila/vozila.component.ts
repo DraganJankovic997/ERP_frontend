@@ -38,6 +38,10 @@ export class VozilaComponent implements OnInit {
     });
   }
 
+  dodajVozilo() {
+    this.router.navigate(['/add/vozila']);
+  }
+
   voziloRedirect(id) {
     this.router.navigate([`/vozila/${id}`]);
   }

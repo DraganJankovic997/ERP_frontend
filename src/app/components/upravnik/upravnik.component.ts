@@ -36,4 +36,8 @@ export class UpravnikComponent implements OnInit {
         this.toastr.error(err.message, 'Error!');
       })
   }
+
+  izmeniUpravnika() {
+    this.router.navigate([`edit/upravnik/${this.route.snapshot.paramMap.get('id')}`])
+  }
 }

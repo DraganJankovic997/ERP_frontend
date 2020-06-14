@@ -27,7 +27,6 @@ export class ProdavacComponent implements OnInit {
   }
 
   obrisiProdavca() {
-    console.log('f-ja');
     this.prodavacService.deleteProdavac(this.route.snapshot.paramMap.get('id'))
       .subscribe((res) => {
         this.toastr.success(res['message'], 'Prodavac obrisan');
@@ -35,6 +34,10 @@ export class ProdavacComponent implements OnInit {
       }, (err) => {
         this.toastr.error(err.message, 'Error!');
       })
+  }
+
+  izmeniProdavca() {
+    this.router.navigate([`edit/prodavac/${this.route.snapshot.paramMap.get('id')}`])
   }
 
 }

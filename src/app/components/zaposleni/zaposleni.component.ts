@@ -24,8 +24,6 @@ export class ZaposleniComponent implements OnInit {
     this.zaposleniService.getZaposleni().subscribe((res) => {
       this.prodavci=res['prodavci'];
       this.upravnici=res['upravnici'];
-      console.log(this.prodavci);
-      console.log(this.upravnici);
     })
   }
 
@@ -35,6 +33,12 @@ export class ZaposleniComponent implements OnInit {
 
   pogledajUpravnika(id) {
     this.router.navigate(['/upravnik/'+id]);
+  }
+  dodajProdavca() {
+    this.router.navigate(['/add/prodavac']);
+  }
+  dodajUpravnika() {
+    this.router.navigate(['/add/upravnik']);
   }
 
 }

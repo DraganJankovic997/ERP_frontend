@@ -1,0 +1,57 @@
+<div class="container">
+    <form [formGroup]="upravnikForm" (ngSubmit)="dodajUpravnika()">
+        <div formGroupName="zaposleni">
+            <div class="mb-2">
+                <input required type="text" placeholder="Ime" class="form-control" formControlName="ime">
+                <div *ngIf="ime.errors && (ime.touched || ime.dirty)" class="alert alert-danger">
+                    <span class="help-block" *ngIf="ime.errors.required">
+                        Morate uneti ime upravnika!
+                    </span>
+                </div>
+            </div>
+    
+            <div class="mb-2">
+                <input required type="text" placeholder="Prezime" class="form-control" formControlName="prezime">
+                <div *ngIf="prezime.errors && (prezime.touched || prezime.dirty)" class="alert alert-danger">
+                    <span class="help-block" *ngIf="prezime.errors.required">
+                        Morate uneti prezime upravnika!
+                    </span>
+                </div>
+            </div>
+    
+            <div class="mb-2">
+                <input required type="text" placeholder="JMBG" class="form-control" formControlName="jmbg">
+                <div *ngIf="jmbg.errors && (jmbg.touched || jmbg.dirty)" class="alert alert-danger">
+                    <span class="help-block" *ngIf="jmbg.errors.required">
+                        Morate uneti JMBG upravnika!
+                    </span>
+    
+                    <span class="help-block" *ngIf="jmbg.errors.minlength || jmbg.errors.maxlength">
+                        JMBG mora imati 13 cifri!
+                    </span>
+                    <span class="help-block" *ngIf="jmbg.errors.pattern">
+                        JMBG moze sadrzati samo brojeve!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div formGroupName="upravnik">
+            <div class="mb-2">
+                <div class="mb-2">
+                    <input required type="text" placeholder="Broj telefona" class="form-control" formControlName="broj_telefona">
+                    <div *ngIf="broj_telefona.errors && (broj_telefona.touched || broj_telefona.dirty)" class="alert alert-danger">
+                        <span class="help-block" *ngIf="broj_telefona.errors.required">
+                            Morate uneti broj telefona upravnika!
+                        </span>
+                        <span class="help-block" *ngIf="broj_telefona.errors.pattern">
+                            Broj telefona moze sadrzati samo brojeve!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button [disabled]="!upravnikForm.valid" type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+</div>

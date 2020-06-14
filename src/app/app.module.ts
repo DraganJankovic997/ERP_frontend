@@ -21,6 +21,14 @@ import { KategorijaEditComponent } from './components/forms/kategorija-edit/kate
 import { KlijentAddComponent } from './components/forms/klijent-add/klijent-add.component';
 import { KlijentEditComponent } from './components/forms/klijent-edit/klijent-edit.component';
 import { KlijentComponent } from './components/klijent/klijent.component';
+import { VoziloAddComponent } from './components/forms/vozilo-add/vozilo-add.component';
+import { VoziloEditComponent } from './components/forms/vozilo-edit/vozilo-edit.component';
+import { ProdavacAddComponent } from './components/forms/prodavac-add/prodavac-add.component';
+import { ProdavacEditComponent } from './components/forms/prodavac-edit/prodavac-edit.component';
+import { UpravnikEditComponent } from './components/forms/upravnik-edit/upravnik-edit.component';
+import { UpravnikAddComponent } from './components/forms/upravnik-add/upravnik-add.component';
+import { ProvizijeComponent } from './components/provizije/provizije.component';
+import { ProvizijaService } from './services/provizija.service';
 
 
 const ROUTES = [
@@ -36,7 +44,15 @@ const ROUTES = [
   { path: 'klijent', component: KlijentiComponent },
   { path: 'klijent/:id', component: KlijentComponent },
   { path: 'add/klijent', component: KlijentAddComponent },
-  { path: 'edit/klijent/:id', component: KlijentEditComponent }
+  { path: 'edit/klijent/:id', component: KlijentEditComponent },
+  { path: 'add/vozila', component: VoziloAddComponent },
+  { path: 'edit/vozila/:id', component: VoziloEditComponent },
+  { path: 'add/prodavac', component: ProdavacAddComponent },
+  { path: 'edit/prodavac/:id', component: ProdavacEditComponent },
+  { path: 'add/upravnik', component: UpravnikAddComponent },
+  { path: 'edit/upravnik/:id', component: UpravnikEditComponent },
+  { path: 'provizije', component: ProvizijeComponent }
+
 ]
 
 @NgModule({
@@ -54,7 +70,14 @@ const ROUTES = [
     KategorijaEditComponent,
     KlijentAddComponent,
     KlijentEditComponent,
-    KlijentComponent
+    KlijentComponent,
+    VoziloAddComponent,
+    VoziloEditComponent,
+    ProdavacAddComponent,
+    ProdavacEditComponent,
+    UpravnikEditComponent,
+    UpravnikAddComponent,
+    ProvizijeComponent
   ],
   imports: [
     BrowserModule,
