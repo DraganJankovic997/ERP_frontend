@@ -30,4 +30,7 @@ export class VoziloService {
   deleteVozilo(id) {
     return this.httpClient.delete(`${environment.API}/vozilo/${id}`, {responseType: 'text'});
   }
+  getNeprodata() {
+    return this.httpClient.get(`${environment.API}/neprodata-vozila`);
+  }
 }

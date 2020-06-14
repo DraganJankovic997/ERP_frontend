@@ -36,7 +36,8 @@ export class KategorijeComponent implements OnInit {
   addKategorija() {
     this.kategorijaService.addKategorija(this.kategorijaForm.value)
     .subscribe((res) => {
-      location.reload();
+      this.toastr.success('Kategorija uspesno dodata', 'Kategorija dodata');
+      this.getAll();
     }, (err) => {
       this.toastr.error(err.message, 'Error');
     })
@@ -49,7 +50,7 @@ export class KategorijeComponent implements OnInit {
   obrisiKategoriju(id) {
     this.kategorijaService.deleteKategorija(id).subscribe((res) => {
       this.toastr.success('Kategorija uspesno obrisana', 'Uspeh');
-      location.reload();
+      this.getAll();
     }, (err) => {
       this.toastr.error(err.message, 'Error');
     })

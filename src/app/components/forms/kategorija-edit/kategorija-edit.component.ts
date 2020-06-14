@@ -47,7 +47,7 @@ export class KategorijaEditComponent implements OnInit {
     console.log(this.kategorijaForm.value);
     this.kategorijaService.updateKategorija(this.kategorijaForm.value, this.route.snapshot.paramMap.get('id'))
     .subscribe((res) => {
-      this.toastr.success(res['message'], 'Kategorija izmenjena !');
+      this.toastr.success('Kategorija uspesno izmenjena!', 'Kategorija izmenjena !');
       this.router.navigate(['/kategorija']);
     }, (err) => {
       this.toastr.error(err.message, 'Error');

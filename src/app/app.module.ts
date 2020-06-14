@@ -29,9 +29,11 @@ import { UpravnikEditComponent } from './components/forms/upravnik-edit/upravnik
 import { UpravnikAddComponent } from './components/forms/upravnik-add/upravnik-add.component';
 import { ProvizijeComponent } from './components/provizije/provizije.component';
 import { ProvizijaService } from './services/provizija.service';
+import { VozilaPipe } from './pipes/vozila.pipe';
 
 
 const ROUTES = [
+  { path: '', component: VozilaComponent },
   { path:'zaposleni', component: ZaposleniComponent },
   { path: 'vozila', component: VozilaComponent },
   { path: 'racuni', component: RacuniComponent },
@@ -51,7 +53,7 @@ const ROUTES = [
   { path: 'edit/prodavac/:id', component: ProdavacEditComponent },
   { path: 'add/upravnik', component: UpravnikAddComponent },
   { path: 'edit/upravnik/:id', component: UpravnikEditComponent },
-  { path: 'provizije', component: ProvizijeComponent }
+  { path: 'provizije', component: ProvizijeComponent },
 
 ]
 
@@ -77,7 +79,8 @@ const ROUTES = [
     ProdavacEditComponent,
     UpravnikEditComponent,
     UpravnikAddComponent,
-    ProvizijeComponent
+    ProvizijeComponent,
+    VozilaPipe
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KlijentiService } from 'src/app/services/klijenti.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { RacunService } from 'src/app/services/racun.service';
 
 @Component({
   selector: 'app-klijent',
@@ -14,7 +15,8 @@ export class KlijentComponent implements OnInit {
     private klijentService: KlijentiService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private racunService: RacunService
   ) { }
 
   klijent;
@@ -45,6 +47,20 @@ export class KlijentComponent implements OnInit {
     }, (err) => {
       this.toastr.error('Doslo je do greske prilikom brisanja klijenta', 'Greska');
       this.router.navigate(['/klijent']);
+    })
+  }
+
+  napraviRacun() {
+    let racun = {
+      kupac_id: this.route.snapshot.paramMap.get('id'),
+      zatvoren: false
+    }
+    this.racunService.addRacun(racun)
+    .subscribe((res) => {
+      this.toastr.success('Racun uspesno napravljen', 'Racun napravljen');
+      this.router.navigate(['/racuni']);
+    }, (err) => {
+      this.toastr.error('Doslo je do greske prilikom pravljenja racuna', 'Greska');
     })
   }
 

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="prodavac">
     <form [formGroup]="prodavacForm" (ngSubmit)="izmeniProdavca()">
         <div formGroupName="zaposleni">
             <div class="mb-2">

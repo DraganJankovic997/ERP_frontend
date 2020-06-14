@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VoziloService } from 'src/app/services/vozilo.service';
 import { KategorijaService } from 'src/app/services/kategorija.service';
+import { VozilaPipe } from '../../pipes/vozila.pipe';
 
 @Component({
   selector: 'app-vozila',
@@ -13,11 +14,13 @@ export class VozilaComponent implements OnInit {
 
   constructor(private vozilaService: VoziloService, private router: Router, private toastr: ToastrService, private kategorijaService: KategorijaService) { }
 
-  sva_vozila: Array<any>;
   kategorije;
-  // filter_kategorija;
-  // filter_prodato;
-  vozila;
+  vozila: Array<any>;
+  maxPage: number;
+
+  page: number=1;
+  searchText: string;
+  pageSize = 10;
   ngOnInit(): void {
     this.getVozila();
     this.getKategorije();
@@ -25,8 +28,11 @@ export class VozilaComponent implements OnInit {
   getVozila() {
     this.vozilaService.getAll()
     .subscribe((res)=> {
-      this.sva_vozila = res;
       this.vozila = res;
+      this.vozila.sort((x,y) => {
+        return x['prodato']-y['prodato'];
+      })
+      this.maxPage = Math.ceil(this.vozila.length / this.pageSize);
     }, (err) => {
       this.toastr.error('Doslo je do greske prilikom ucitavanja vozila', 'Greska');
     });
@@ -34,7 +40,7 @@ export class VozilaComponent implements OnInit {
 
   getKategorije(){
     this.kategorijaService.getKategorije().subscribe((res) => {
-      this.kategorije = res;
+      this.kategorije = res; 
     });
   }
 
@@ -46,8 +52,15 @@ export class VozilaComponent implements OnInit {
     this.router.navigate([`/vozila/${id}`]);
   }
 
-  // filter() {
-    
-  // }
+  predhodna() {
+    this.page = this.page -1;
+  }
+
+  sledeca() {
+    this.page = this.page + 1;
+  }
+
+
+  
 
 }

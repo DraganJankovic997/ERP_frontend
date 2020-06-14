@@ -1,36 +1,88 @@
 <div class="container" *ngIf="racun">
+
     <h1 class="display-4"> Racun </h1>
+
+    <div class="row mb-5 mt-4">
+        <button class="btn btn-danger mr-1" (click) ="obrisiRacun()">Obrisi racun</button>
+        <button class="btn btn-success" [disabled]="racun.zatvoren==true" (click)="zatvoriRacun()">Zatvori racun</button>
+    </div>
 
     <span class="font-weight-bold"> ID: </span> {{ racun.id }}  <br>
     <span class="font-weight-bold"> Zatvoren: </span> {{ racun.zatvoren }}  <br>
     <span class="font-weight-bold"> Kupac: </span> {{ racun.kupac.ime }} {{ racun.kupac.prezime }}  <br>
     <span class="font-weight-bold"> Email kupca:</span> {{ racun.kupac.email }}  <br>
-    <span class="font-weight-bold"> Broj telefona kupca: </span> {{ racun.kupac.broj_telefona }}  <br>
+    <span class="font-weight-bold"> Broj telefona kupca: </span> {{ racun.kupac.broj_telefona }} <br>
     
-    <span class="font-weight-bold">Vozila: </span>
+    <div class="mt-5">
+        <span class="font-weight-bold">Vozila: </span>
+        
+        <table class="table table-hover table-stripped text-center">
+            <thead>
+                <th scope="col" class="fit">#</th>
+                <th scope="col">Vozilo</th>
+                <th scope="col">Kategorija</th>
+                <th scope="col">Vlasnik</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Upravnik</th>
+                <th scope="col">Prodavac</th>
+            </thead>
     
-    <table class="table table-hover table-stripped text-center">
-        <thead>
-            <th scope="col" class="fit">#</th>
-            <th scope="col">Vozilo</th>
-            <th scope="col">Kategorija</th>
-            <th scope="col">Vlasnik</th>
-            <th scope="col">Cena</th>
-            <th scope="col">Upravnik</th>
-            <th scope="col">Prodavac</th>
-        </thead>
+            <tbody>
+                <tr *ngFor="let v of vozila; let i = index">
+                    <th span="row" class="fit">{{i+1}}</th>
+                    <td> <a [routerLink]="[ '/vozila', v.vozilo.id]"> {{v.vozilo.id}} </a> </td>
+                    <td> {{v.vozilo.kategorija.naziv}} </td>
+                    <td> {{v.vozilo.vlasnik.ime}} {{v.vozilo.vlasnik.prezime}} </td>
+                    <td> {{v.cena}}din.</td>
+                    <td> {{v.vozilo.upravnik.ime}} {{v.vozilo.upravnik.prezime}} </td>
+                    <td> {{v.prodavac.ime}} {{v.prodavac.prezime}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <tbody>
-            <tr *ngFor="let v of vozila; let i = index">
-                <th span="row" class="fit">{{i+1}}</th>
-                <td> <a [routerLink]="[ '/vozila', v.vozilo.id]"> {{v.vozilo.id}} </a> </td>
-                <td> {{v.vozilo.kategorija.naziv}} </td>
-                <td> {{v.vozilo.vlasnik.ime}} {{v.vozilo.vlasnik.prezime}} </td>
-                <td> {{v.cena}}din.</td>
-                <td> {{v.vozilo.upravnik.ime}} {{v.vozilo.upravnik.prezime}} </td>
-                <td> {{v.prodavac.ime}} {{v.prodavac.prezime}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="d-flex justify-content-center mt-3"  *ngIf="!racun.zatvoren" >
+            <form [formGroup]="dodajVozilo" (ngSubmit)="dodajVoziloNaRacun()">
+
+                <div class="mb-2">
+                    <span>Vozilo: </span>
+                    <select class="form-control" formControlName="vozilo_id">
+                        <option value="" *ngFor="let vozilo of sva_vozila" [ngValue]="vozilo.id"> {{vozilo.id}} </option>
+                    </select>
+                    <div *ngIf="vozilo_id.errors && (vozilo_id.touched || vozilo_id.dirty)" class="alert alert-danger">
+                        <span class="help-block" *ngIf="vozilo_id.errors.required">
+                            Morate izabrati vozilo!
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <span>Prodavac: </span>
+                    <select class="form-control" formControlName="prodavac_id">
+                        <option value="" *ngFor="let prodavac of svi_prodavci" [ngValue]="prodavac.id"> {{prodavac.ime}} {{prodavac.prezime}} </option>
+                    </select>
+                    <div *ngIf="prodavac_id.errors && (prodavac_id.touched || prodavac_id.dirty)" class="alert alert-danger">
+                        <span class="help-block" *ngIf="prodavac_id.errors.required">
+                            Morate izabrati prodavca!
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <input required type="number" placeholder="Cena" class="form-control" formControlName="cena">
+                    <div *ngIf="cena.errors && (cena.touched || cena.dirty)" class="alert alert-danger">
+                        <span class="help-block" *ngIf="cena.errors.required">
+                            Morate uneti cenu vozila!
+                        </span>
+                        <span class="help-block" *ngIf="cena.errors.min">
+                            Cena vozila ne moze biti negativan broj!
+                        </span>
+                    </div>
+                </div>
+
+                <button [disabled]="!dodajVozilo.valid" type="submit" class="btn btn-primary"> Dodaj vozilo</button>
+
+            </form>
+        </div>
+    </div>
 
 </div>
